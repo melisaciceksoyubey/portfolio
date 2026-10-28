@@ -36,16 +36,17 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Statik hosting (Netlify, GitHub Pages, vb.)
+## Build ve yayınlama
 
-Proje **statik export** ile build alır; sunucu tarafı (Node/API) yoktur. 404 hatası almamanız için:
+Proje **statik export kullanmaz**. "Bana bir şey sor" bölümü `/api/ask` API route'u ile çalıştığı için sitenin Node.js çalıştırabilen bir ortamda yayınlanması gerekir. Bu nedenle GitHub Pages gibi yalnızca statik dosya sunan servisler uygun değildir.
 
-1. **Build alın:** `npm run build`  
-   - Önce `prebuild` GitHub'dan repo listesini ve README'leri çeker.  
-   - Ardından Next.js tüm sayfaları statik HTML olarak **`out`** klasörüne yazar.
+1. **Build alın:** `npm run build`
+   - Önce `prebuild` adımı GitHub'dan repo listesini ve README'leri çeker (`GITHUB_TOKEN` ve `GITHUB_USERNAME` gerekir).
+   - Ardından Next.js uygulamayı `.next` klasörüne derler.
 
-2. **Hosting'e yükleyin:** **`out` klasörünün içeriğini** sitenizin kök dizini olarak yükleyin (veya "Publish directory" = `out`).  
-   - Eski `dist` veya `.next` klasörünü yüklemeniz 404'e neden olur; statik sunucu sadece `out` içindeki HTML/JS/CSS dosyalarını sunar.
+2. **Çalıştırın:** `npm start` (production sunucusu, varsayılan port 3000).
+
+3. **Yayınlama:** Vercel (önerilir) veya Next.js destekli bir platform (ör. Netlify'ın Next.js runtime'ı) kullanın. Ortam değişkenlerini (`GITHUB_TOKEN`, `GITHUB_USERNAME`, `GEMINI_API_KEY`, `DATABASE_URL`) platformun ayarlarından girin.
 
 ## Deploy on Vercel
 
